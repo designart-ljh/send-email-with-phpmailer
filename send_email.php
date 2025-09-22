@@ -8,8 +8,8 @@ require 'PHPMailer/SMTP.php';
 include_once '../lib/lib.php';
 
 $mail = new PHPMailer(true);
-$email_account = 'nyaongnyaong@gmail.com';
-$password = 'frilyltaehdsmrnf';
+$email_account = '이메일 계정';
+$password = '앱 비밀번호';
 try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
