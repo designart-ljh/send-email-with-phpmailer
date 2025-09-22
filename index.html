@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>문의하기</title>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+        $(function() {
+            $(".file-select-button").on("click", function () {
+                $("#file-input").click();
+            });
+
+            $("#file-input").on("change", function () {
+                const file_name = this.files[0]?.name || "선택된 파일 없음";
+                $("#selected-file-name").text(file_name);
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>문의하기</h1>
+            <form action="send_email.php" method="post" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="이름" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">회사 및 직급</label>
+                        <input type="text" id="company" name="회사 및 직급" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">전화번호</label>
+                        <input type="tel" id="phone" name="전화번호" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일</label>
+                        <input type="email" id="email" name="이메일" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">문의내용</label>
+                    <textarea id="message" name="문의내용" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>파일첨부</label>
+                    <div class="file-upload-container">
+                        <div class="file-input-wrapper">
+                            <span class="file-name" id="selected-file-name">선택된 파일 없음</span>
+                            <button type="button" class="file-select-button">파일선택</button>
+                        </div>
+                        <input type="file" id="file-input" class="file-input" accept="*.hwp">
+                        <div class="file-info">
+                            용량이 20MB를 초과할 경우 " <a href="mailto:help@designart.co.kr">help@designart.co.kr</a> " 로 발송 <br>
+                            hwp, xlsx, doc, docx, ppt, pptx, pdf, zip, jpg, png, gif 파일만 첨부 가능
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button>메일 발송</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
